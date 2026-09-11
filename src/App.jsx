@@ -12,10 +12,12 @@ const App = () => {
   
   return (
     <Routes>
-      <Route path="/" element={<Layout><HomePage /></Layout>} />
-      <Route path="/countries" element={<Layout><CountriesPage /></Layout>} />
-      <Route path="/bucket-list" element={<Layout><BucketListPage /></Layout>} />
-      <Route path="/about" element={<Layout><AboutPage /></Layout>} />
+      <Route path="/" element={<Layout />}>
+        <Route index element={<HomePage />} />
+        <Route path="countries" element={<CountriesPage />} />
+        <Route path="bucket-list" element={<BucketListPage />} />
+        <Route path="about" element={<AboutPage />} />
+      </Route>
     </Routes>
   );
 };
