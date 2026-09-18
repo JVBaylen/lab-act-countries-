@@ -11,4 +11,5 @@ const COUNTRIES = [
   { code: "ZA", name: "South Africa",   capital: "Pretoria",     region: "Africa",  population: 60_140_000,  flag: "🇿🇦" },
 ];
 
+export { COUNTRIES };
 export default COUNTRIES;
