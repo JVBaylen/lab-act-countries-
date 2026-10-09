@@ -1,9 +1,23 @@
 import COUNTRIES from "../data/countries";
+import { useLocation } from "react-router";
 
 const CountriesPage = () => {
+  const location = useLocation();
+  const missingCode = location.state?.missingCode;
+
   return (
     <div className="max-w-4xl mx-auto">
+      {missingCode && (
+        <div className="alert alert-warning mb-4">
+          <span>
+            We don&apos;t have a country with code &quot;
+            {missingCode}&quot;.
+          </span>
+        </div>
+      )}
+
       <h1 className="text-3xl font-bold mb-4">Countries</h1>
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {COUNTRIES.map((c) => (
           <div key={c.code} className="card bg-base-100 shadow">
@@ -15,6 +29,7 @@ const CountriesPage = () => {
                   <p className="text-sm opacity-70">{c.capital}</p>
                 </div>
               </div>
+
               <div className="flex gap-2 mt-2">
                 <span className="badge badge-primary">{c.region}</span>
                 <span className="badge">
@@ -30,3 +45,4 @@ const CountriesPage = () => {
 };
 
 export default CountriesPage;
+
