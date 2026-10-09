@@ -7,6 +7,7 @@ import BucketListPage from "./pages/BucketListPage";
 import AboutPage from "./pages/AboutPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import CountriesLayout from "./components/CountriesLayout";
+import RequireValidCountry from "./components/RequireValidCountry";
 
 const App = () => {
   // TODO: replace this with a real route table using react-router.
@@ -18,12 +19,16 @@ const App = () => {
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
         
+
 <Route path="countries" element={<CountriesLayout />}>
   <Route index element={<CountriesPage />} />
-  <Route
-    path=":countryCode"
-    element={<CountryDetailPage />}
-  />
+
+  <Route element={<RequireValidCountry />}>
+    <Route
+      path=":countryCode"
+      element={<CountryDetailPage />}
+    />
+  </Route>
 </Route>
 
         <Route path="bucket-list" element={<BucketListPage />} />
