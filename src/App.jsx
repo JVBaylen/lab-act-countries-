@@ -7,7 +7,8 @@ import BucketListPage from "./pages/BucketListPage";
 import AboutPage from "./pages/AboutPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import CountriesLayout from "./components/CountriesLayout";
-import RequireValidCountry from "./components/RequireValidCountry";
+import RequireValidCountry from "./components/RequireValidCountry"
+import RequireLogin from "./components/RequireLogin";;
 
 const App = () => {
   // TODO: replace this with a real route table using react-router.
@@ -31,7 +32,10 @@ const App = () => {
   </Route>
 </Route>
 
-        <Route path="bucket-list" element={<BucketListPage />} />
+        <Route element={<RequireLogin />}>
+ <Route path="bucket-list" element={<BucketListPage />} />
+</Route>
+
         <Route path="about" element={<AboutPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
