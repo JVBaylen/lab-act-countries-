@@ -1,9 +1,23 @@
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router";
 import COUNTRIES from "../data/countries";
-import { useLocation } from "react-router";
 
 const CountriesPage = () => {
   const location = useLocation();
-  const missingCode = location.state?.missingCode;
+  const navigate = useNavigate();
+
+  const [missingCode, setMissingCode] = useState(
+    location.state?.missingCode || ""
+  );
+
+  useEffect(() => {
+    if (location.state?.missingCode) {
+      navigate(location.pathname, {
+        replace: true,
+        state: null,
+      });
+    }
+  }, [location, navigate]);
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -45,4 +59,3 @@ const CountriesPage = () => {
 };
 
 export default CountriesPage;
-
